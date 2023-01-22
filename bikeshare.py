@@ -2,13 +2,16 @@ import time
 import pandas as pd
 import numpy as np
 
+# define dictionary to store data file filenames
 CITY_DATA = { 'chicago': 'chicago.csv',
               'new york city': 'new_york_city.csv',
               'washington': 'washington.csv' }
-              
+
+ # define lists with months and days to be used for filtering options           
 months = ['january', 'february', 'march', 'april', 'may', 'june', 'all']
 days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday', 'all']
 
+# set option to display all columns
 pd.set_option('display.max_columns',200)
               
 def DisplayChoices(choices):
@@ -23,16 +26,16 @@ def DisplayChoices(choices):
 
 def get_filters():
     """
-    Asks user to specify a city, month, and day to analyze.
+    Asks user to specify a city, month, and day to analyse.
 
     Returns:
-        (str) city - name of the city to analyze
+        (str) city - name of the city to analyse
         (str) month - name of the month to filter by, or "all" to apply no month filter
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     
-    # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
+    # get user input for city (chicago, new york city, washington).
     prompt = "Which city would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
     DisplayChoices(list(CITY_DATA.keys()))
@@ -144,7 +147,11 @@ def load_data(city, month, day):
     
 
 def time_stats(df):
-    """Displays statistics on the most frequent times of travel."""
+    """
+    Displays statistics on the most frequent times of travel.
+    Args:
+        df - Pandas DataFrame    
+    """
 
     print('\nCalculating The Most Frequent Times of Travel...\n')    
     start_time = time.time()
@@ -169,7 +176,11 @@ def time_stats(df):
 
 
 def station_stats(df):
-    """Displays statistics on the most popular stations and trip."""
+    """
+    Displays statistics on the most popular stations and trip.
+    Args:
+        df - Pandas DataFrame
+    """
 
     print('\nCalculating The Most Popular Stations and Trip...\n')
     start_time = time.time()
@@ -192,7 +203,11 @@ def station_stats(df):
 
 
 def trip_duration_stats(df):
-    """Displays statistics on the total and average trip duration."""
+    """
+    Displays statistics on the total and average trip duration.
+    Args:
+        df - Pandas DataFrame    
+    """
 
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
@@ -215,7 +230,11 @@ def trip_duration_stats(df):
 
 
 def user_stats(df):
-    """Displays statistics on bikeshare users."""
+    """
+    Displays statistics on bikeshare users.
+    Args:
+        df - Pandas DataFrame    
+    """
 
     print('\nCalculating User Stats...\n')
     start_time = time.time()
@@ -259,6 +278,8 @@ def show_raw_data(df):
     Display 5 lines of raw data.
     Prompt user if they would like to see another 5 lines of data.
     Continue displaying 5 more lines of data until user declines or end of data reached.
+    Args:
+        df - Pandas DataFrame    
     """
     print(df.head())
     i = 5
