@@ -11,7 +11,7 @@ days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sun
 
 pd.set_option('display.max_columns',200)
               
-def DisplayChoices(choices):
+def display_choices(choices):
     """
     Displays numbered list of choices for user to select from
     
@@ -35,7 +35,7 @@ def get_filters():
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     prompt = "Which city would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
-    DisplayChoices(list(CITY_DATA.keys()))
+    display_choices(list(CITY_DATA.keys()))
     
     while True:
         try:
@@ -59,7 +59,7 @@ def get_filters():
     prompt = "Which month would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
     print(prompt)
-    DisplayChoices(months)
+    display_choices(months)
     # BreakFlag variable needed to escape from while loop due to nested loops
     BreakFlag = 0
 
@@ -83,7 +83,7 @@ def get_filters():
     prompt = "Which day of the week would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
     print(prompt)
-    DisplayChoices(days)
+    display_choices(days)
     # reset BreakFlag
     BreakFlag = 0
 
