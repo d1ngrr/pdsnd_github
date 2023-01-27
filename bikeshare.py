@@ -1,6 +1,7 @@
 import time
 import pandas as pd
 import numpy as np
+import os
 
 # define dictionary to store data file filenames
 CITY_DATA = { 'chicago': 'chicago.csv',
@@ -14,7 +15,7 @@ days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sun
 # set option to display all columns
 pd.set_option('display.max_columns',200)
               
-def DisplayChoices(choices):
+def display_choices(choices):
     """
     Displays numbered list of choices for user to select from
     
@@ -38,7 +39,7 @@ def get_filters():
     # get user input for city (chicago, new york city, washington).
     prompt = "Which city would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
-    DisplayChoices(list(CITY_DATA.keys()))
+    display_choices(list(CITY_DATA.keys()))
     
     while True:
         try:
@@ -62,7 +63,7 @@ def get_filters():
     prompt = "Which month would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
     print(prompt)
-    DisplayChoices(months)
+    display_choices(months)
     # BreakFlag variable needed to escape from while loop due to nested loops
     BreakFlag = 0
 
@@ -86,7 +87,7 @@ def get_filters():
     prompt = "Which day of the week would you like to look at?\n"
     prompt+= "(Enter the number that corresponds with your choice)\n"
     print(prompt)
-    DisplayChoices(days)
+    display_choices(days)
     # reset BreakFlag
     BreakFlag = 0
 
@@ -121,9 +122,10 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    # load data file into a dataframe
-    filename = CITY_DATA[city.lower()]
-    df = pd.read_csv(filename)
+    # load data file into a dataframe    
+    script_dir = os.path.abspath( os.path.dirname( __file__ ) )
+    filepath = script_dir + "//data//" + CITY_DATA[city.lower()]
+    df = pd.read_csv(filepath)
 
     # convert the Start Time column to datetime
     df['Start Time'] = pd.to_datetime(df['Start Time'])
